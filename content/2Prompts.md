@@ -60,7 +60,6 @@ Discuss the potential of AI in automating emergency response systems and evacuat
 
 ![Select model claude Sonnet Output](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/IndustryPrompts/selectllama80b.png)
 
-:image[synthetic image generation]{src="/static/IndustryPrompts/selectllama80b.png" width=800}
 
 ```bash
 Analyze how AI can optimize ore extraction processes to maximize yield while minimizing waste and energy consumption.
