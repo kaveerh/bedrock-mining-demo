@@ -1,0 +1,81 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'Provides a S3 to hold the IoT Data'
+
+Resources:
+  BucketIoT:
+    Type: AWS::S3::Bucket
+  
+  DisappearingWorkforce:
+    Type: AWS::S3::Bucket
+  
+  RootRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: "AmazonBedrockExecutionRoleForKnowledgeBase_DisappearingWorkforce"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - bedrock.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Path: /
+      Policies:
+        - PolicyName: BedrockInvokeModelStatement
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 
+                  - 'bedrock:InvokeModel'
+                Resource: 
+                  - !Join
+                    - ''
+                    - - 'arn:aws:bedrock:'
+                      - !Ref 'AWS::Region'
+                      - '::foundation-model/amazon.titan-embed-text-v1' 
+        - PolicyName: OpenSearchServerlessAPIAccessAllStatement
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 
+                  - 'aoss:APIAccessAll'
+                Resource: 
+                  - !Join
+                    - ':'
+                    - - 'arn:aws:aoss'
+                      - !Ref 'AWS::Region'
+                      - !Ref 'AWS::AccountId'
+                      - 'collection/*'
+        - PolicyName: AmazonBedrockS3PolicyForKnowledgeBase
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 
+                  - 's3:ListBucket'
+                Resource: 
+                  - !Join
+                    - ''
+                    - - 'arn:aws:s3:::'
+                      - !Ref DisappearingWorkforce
+              - Effect: Allow
+                Action: 
+                  - 's3:GetObject'
+                Resource: 
+                  - !Join
+                    - ''
+                    - - 'arn:aws:s3:::'
+                      - !Ref DisappearingWorkforce
+                      - /*
+
+Outputs:
+  BucketIoT:
+    Value:
+      Fn::GetAtt: BucketIoT.Arn
+  DisappearingWorkforce:
+    Value:
+      Fn::GetAtt: DisappearingWorkforce.Arn
