@@ -32,7 +32,8 @@ Select Chat with your document
 
 ## Step 3
 Select the Model 
-![Select a Model ](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/kb-modelselect)
+![Select a Model ](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/kb-modelselect.png)
+Pick the Model
 ![Select a Model picks ](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/kb-modelpick.png)
 
 ## Step  4 
@@ -45,7 +46,9 @@ Choose a Document
 
 ## Step 5
 
-Copy the Prompt and paste it in the windows.
+Copy the Prompt and paste it into the Chat Window.
+
+The Reponse may take a few minutes as the document need to be processed before the Model can repond
 
 ```bash
 Who should pay for the cost of Annual medical reports

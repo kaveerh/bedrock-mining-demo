@@ -1,5 +1,5 @@
 ---
-#Predicting Mineral Deposit Locations
+# Predicting Mineral Deposit Locations
 ---
 
 
@@ -63,37 +63,48 @@ can you provide me sample code for Predicting Mineral Deposit Location
 
 
 ```python
+python
 import pandas as pd
+import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+import geopandas as gpd
+import rasterio
+from rasterio.plot import show
+import matplotlib.pyplot as plt
 
-# Load the dataset
+# Load the dataset (assuming it's a CSV file)
 df = pd.read_csv('mineral_deposit_data.csv')
 
 # Preprocess the data
-X = df.drop(['deposit'], axis=1)  # features
-y = df['deposit']  # target variable
+# Convert categorical variables to numerical variables using one-hot encoding
+df = pd.get_dummies(df, columns=['rock_type', 'geochemical_anomaly'])
+
+# Split the data into features (X) and target (y)
+X = df.drop(['deposit_location'], axis=1)
+y = df['deposit_location']
 
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Create a random forest classifier
-rf = RandomForestClassifier(n_estimators=100, random_state=42)
+# Create a Random Forest Classifier model
+rfc = RandomForestClassifier(n_estimators=100, random_state=42)
 
 # Train the model
-rf.fit(X_train, y_train)
+rfc.fit(X_train, y_train)
 
 # Make predictions on the test set
-y_pred = rf.predict(X_test)
+y_pred = rfc.predict(X_test)
 
 # Evaluate the model
-accuracy = accuracy_score(y_test, y_pred)
-print("Accuracy:", accuracy)
+print("Accuracy:", accuracy_score(y_test, y_pred))
 print("Classification Report:")
 print(classification_report(y_test, y_pred))
 print("Confusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
+
+
 ```
 
 
@@ -125,44 +136,40 @@ Given me code to generate synthetic data that will be needed for that csv file
 import pandas as pd
 import numpy as np
 
-# Set the seed for reproducibility
-np.random.seed(42)
-
 # Define the number of samples
 n_samples = 1000
 
 # Define the features and their distributions
 features = {
-    'elevation': {'min': 0, 'max': 1000, 'dist': 'uniform'},
-    'distance_to_fault': {'min': 0, 'max': 5000, 'dist': 'uniform'},
-    'rock_type': {'values': [0, 1, 2], 'probabilities': [0.4, 0.3, 0.3], 'dist': 'categorical'},
-    'geochemical_anomaly': {'values': [0, 1], 'probabilities': [0.7, 0.3], 'dist': 'bernoulli'}
+    'rock_type': np.random.choice(['igneous', 'sedimentary', 'metamorphic'], n_samples),
+    'geochemical_anomaly': np.random.choice(['yes', 'no'], n_samples),
+    'latitude': np.random.uniform(-90, 90, n_samples),
+    'longitude': np.random.uniform(-180, 180, n_samples),
+    'elevation': np.random.uniform(0, 5000, n_samples),
+    'distance_to_fault': np.random.uniform(0, 100, n_samples),
+    'geochemical_value': np.random.normal(0, 1, n_samples),
+    'deposit_location': np.random.choice([0, 1], n_samples, p=[0.8, 0.2])  # 80% no deposit, 20% deposit
 }
 
-# Generate the data
-data = {}
-for feature, params in features.items():
-    if params['dist'] == 'uniform':
-        data[feature] = np.random.uniform(params['min'], params['max'], n_samples)
-    elif params['dist'] == 'categorical':
-        data[feature] = np.random.choice(params['values'], n_samples, p=params['probabilities'])
-    elif params['dist'] == 'bernoulli':
-        data[feature] = np.random.binomial(1, params['probabilities'][1], n_samples)
+# Create a Pandas DataFrame from the features
+df = pd.DataFrame(features)
 
-# Define the target variable (deposit)
-# For simplicity, let's assume the probability of a deposit is a function of the elevation and distance to fault
-def deposit_probability(elevation, distance_to_fault):
-    return 1 / (1 + np.exp(-(elevation - 200) / 100 + (distance_to_fault - 1000) / 500))
-
-deposit_probabilities = deposit_probability(data['elevation'], data['distance_to_fault'])
-data['deposit'] = np.random.binomial(1, deposit_probabilities)
-
-# Create a Pandas dataframe
-df = pd.DataFrame(data)
+# Add some noise to the data
+df['geochemical_value'] += np.random.normal(0, 0.1, n_samples)
 
 # Save the data to a CSV file
 df.to_csv('mineral_deposit_data.csv', index=False)
 ```
+This code generates synthetic data for the following features:
+
+* `rock_type`: categorical variable with three categories (igneous, sedimentary, metamorphic)
+* `geochemical_anomaly`: categorical variable with two categories (yes, no)
+* `latitude` and `longitude`: continuous variables representing geographic coordinates
+* `elevation`: continuous variable representing elevation above sea level
+* `distance_to_fault`: continuous variable representing distance to a geological fault
+* `geochemical_value`: continuous variable representing a geochemical measurement
+* `deposit_location`: binary variable indicating whether a mineral deposit is present (1) or not (0)
+
 
 ##install code in cloud9 
 
@@ -171,8 +178,9 @@ pip install  ace_tools contourpy cycler fonttools joblib kiwisolver matplotlib n
 ```
 
 ## Results 
+![Screenshot for bedrock.](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/operations/result1.png)
 
-![result1](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/operations/drillholelit.png)
+
 
 
 

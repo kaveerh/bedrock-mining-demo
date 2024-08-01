@@ -1,5 +1,5 @@
 ---
-#Rock stability analysis using GenAI
+# Rock stability analysis using GenAI
 ---
 
 
@@ -29,182 +29,101 @@ Rock stability analysis is a complex task that involves various methods and tech
 
 **Please note that this is a highly simplified example and actual rock stability analysis in mining requires more detailed input data and consideration of various factors, such as joint sets, faults, and other geological features.**
 
-
-
-
-
-```python
-import numpy as np
-from scipy.sparse import csr_matrix
-from scipy.sparse.linalg import spsolve
-
-# Define material properties
-E = 30e9  # Young's modulus (Pa)
-nu = 0.25  # Poisson's ratio
-
-# Define geometry and mesh
-nodes = np.array([[0, 0], [1, 0], [1, 1], [0, 1]])
-elements = np.array([[0, 1, 2], [2, 3, 0]])
-n_nodes = len(nodes)
-n_elements = len(elements)
-
-# Define boundary conditions
-fixed_nodes = [0, 1]
-force_nodes = [2]
-force_values = [1e6]  # 1 MN force
-
-# Calculate element stiffness matrices
-def calc_element_stiffness(E, nu, nodes, element):
-    x1, y1 = nodes[element[0]]
-    x2, y2 = nodes[element[1]]
-    x3, y3 = nodes[element[2]]
-
-    k = np.array([
-        [1, x1, y1, 1, x2, y2, 1, x3, y3],
-        [x1, x1**2, x1*y1, x2, x2**2, x2*y2, x3, x3**2, x3*y3],
-        [y1, x1*y1, y1**2, y2, x2*y2, y2**2, y3, x3*y3, y3**2],
-        [1, x2, y2, 1, x3, y3, 1, x1, y1],
-        [x2, x2**2, x2*y2, x3, x3**2, x3*y3, x1, x1**2, x1*y1],
-        [y2, x2*y2, y2**2, y3, x3*y3, y3**2, y1, x1*y1, y1**2],
-        [1, x3, y3, 1, x1, y1, 1, x2, y2],
-        [x3, x3**2, x3*y3, x1, x1**2, x1*y1, x2, x2**2, x2*y2],
-        [y3, x3*y3, y3**2, y1, x1*y1, y1**2, y2, x2*y2, y2**2]
-    ])
-
-    B = 1 / (2 * E / (1 - nu**2)) * np.array([
-        [1, nu, 0],
-        [nu, 1, 0],
-        [0, 0, (1 - nu) / 2]
-    ])
-
-    k_element = B.T @ k @ B * np.linalg.det([
-        [x2 - x1, x3 - x1],
-        [y2 - y1, y3 - y1]
-    ])
-
-    return k_element
-
-# Assemble global stiffness matrix
-K = csr_matrix((n_nodes * 2, n_nodes * 2))
-for element in elements:
-    k_element = calc_element_stiffness(E, nu, nodes, element)
-    for i in range(3):
-        for j in range(3):
-            i_global = element[i] * 2
-            j_global = element[j] * 2
-            K[i_global:i_global + 2, j_global:j_global + 2] += k_element[i * 2:i * 2 + 2, j * 2:j * 2 + 2]
-
-# Apply boundary conditions
-fixed_dofs = np.concatenate([2 * np.array(fixed_nodes), 2 * np.array(fixed_nodes) + 1])
-free_dofs = np.setdiff1d(np.arange(K.shape[0]), fixed_dofs)
-K_free = K[free_dofs, :][:, free_dofs]
-
-# Apply forces
-force_dofs = np.concatenate([2 * np.array(force_nodes), 2 * np.array(force_nodes) + 1])
-f_free = np.zeros(K_free.shape[0])
-for dof, force in zip(force_dofs, force_values):
-    f_free[np.where(free_dofs == dof)[0]] = force
-
-# Solve for displacements
-u_free = spsolve(K_free, f_free)
-u = np.zeros(K.shape[0])
-u[free_dofs] = u_free
-
-# Calculate stresses
-stresses = []
-for element in elements:
-    x1, y1 = nodes[element[0]]
-    x2, y2 = nodes[element[1]]
-    x3, y3 = nodes[element[2]]
-
-    B = np.array([
-        [1, x1, y1, 1, x2, y2, 1, x3, y3],
-        [0, 1, 0, 0, 1, 0, 0, 1, 0],
-        [0, 0, 1, 0, 0, 1, 0, 0, 1]
-    ])
-
-    u_element = np.array([
-        u[element[0] * 2], u[element[0] * 2 + 1],
-        u[element[1] * 2], u[element[1] * 2 + 1],
-        u[element[2] * 2], u[element[2] * 2 + 1]
-    ])
-
-    D = E / (1 - nu**2) * np.array([
-        [1, nu, 0],
-        [nu, 1, 0],
-        [0, 0, (1 - nu) / 2]
-    ])
-
-    stress = D @ B @ u_element
-
-    stresses.append(stress)
-
-# Print results
-for i, stress in enumerate(stresses):
-    print(f"Element {i}: Stress = {stress}")
-
+```bash 
+Provide me a example of code Rock Mass Rating (RMR) system in python
 ```
 
 
+
+
+
+```python 
+
+def calculate_rmr(ucs, rqd, spacing, condition, water, orientation):
+    """
+    Calculate the Rock Mass Rating (RMR) based on the input parameters.
+    
+    Parameters:
+    ucs (float): Uniaxial compressive strength of intact rock (MPa)
+    rqd (int): Rock Quality Designation (%)
+    spacing (float): Joint spacing (m)
+    condition (int): Joint condition (1-5)
+    water (int): Water condition (0-4)
+    orientation (int): Orientation of discontinuities (-12 to 0)
+    
+    Returns:
+    float: Rock Mass Rating (RMR)
+    """
+    
+    # Strength of intact rock material
+    if ucs >= 250:
+        strength_rating = 15
+    elif ucs >= 100:
+        strength_rating = 12
+    elif ucs >= 50:
+        strength_rating = 7
+    elif ucs >= 25:
+        strength_rating = 4
+    elif ucs >= 5:
+        strength_rating = 2
+    elif ucs >= 1:
+        strength_rating = 1
+    else:
+        strength_rating = 0
+        
+    # RQD rating
+    rqd_rating = rqd
+    
+    # Joint spacing rating
+    if spacing > 2:
+        spacing_rating = 20
+    elif spacing >= 0.6:
+        spacing_rating = 15
+    elif spacing >= 0.2:
+        spacing_rating = 10
+    elif spacing >= 0.06:
+        spacing_rating = 8
+    else:
+        spacing_rating = 5
+        
+    # Joint condition rating
+    condition_rating = 30 * (condition - 1) / 4
+    
+    # Water condition rating
+    water_rating = 15 - 7 * water
+    
+    # Orientation rating
+    orientation_rating = orientation
+    
+    # Calculate RMR
+    rmr = strength_rating + rqd_rating + spacing_rating + condition_rating + water_rating + orientation_rating
+    
+    return rmr
+
+# Example usage
+ucs = 80  # MPa
+rqd = 70  # %
+spacing = 0.3  # m
+condition = 3  # 1-5
+water = 2  # 0-4
+orientation = -5  # -12 to 0
+
+rmr_value = calculate_rmr(ucs, rqd, spacing, condition, water, orientation)
+print(f"Rock Mass Rating (RMR): {rmr_value}")
+
+```
+
+In this code, the `calculate_rmr` function takes six parameters: uniaxial compressive strength of intact rock (`ucs`), Rock Quality Designation (`rqd`), joint spacing (`spacing`), joint condition (`condition`), water condition (`water`), and orientation of discontinuities (`orientation`).
+
+The function calculates the ratings for each parameter based on the guidelines provided in the RMR system. It then combines these ratings to calculate the final RMR value, which is returned by the function.
+
+In the example usage section, you can provide the input parameter values, and the code will calculate and print the RMR value.
+
+Note that this code assumes the input parameters are valid and within the expected ranges. In a real-world application, you may want to add input validation and error handling to ensure the code behaves correctly with various inputs.
 
 # Explain Use Case
 
-TIn this synthetic data:
 
-- The geometry consists of a rectangular domain with dimensions 3 x 2 units.
-- The mesh is a structured grid of 3 x 2 quadrilateral elements.
-- The material properties are defined as `E = 30 GPa` and `nu = 0.25`.
-- The boundary conditions fix the nodes at the four corners of the domain.
-- External forces of 100 kN are applied at the middle nodes on the top and bottom edges.
-
-You can directly substitute these values into the provided Python code to test its functionality. Additionally, you can modify these synthetic data to simulate different scenarios, such as irregular geometries, varying material properties, or different boundary conditions and loading cases.
-
-Note that this synthetic data is a simplified example, and in real-world applications, you would typically obtain the input data from field measurements, geological surveys, or other sources specific to the mining site under investigation.
-
-```bash
-Given me code to generate synthetic data that will be needed for that csv file 
-```
-
-
-
-
-```python
-import numpy as np
-
-# Define material properties
-E = 30e9  # Young's modulus (Pa)
-nu = 0.25  # Poisson's ratio
-
-# Define geometry and mesh
-nodes = np.array([
-    [0, 0], [1, 0], [2, 0], [3, 0],  # Bottom nodes
-    [0, 1], [1, 1], [2, 1], [3, 1],  # Middle nodes
-    [0, 2], [1, 2], [2, 2], [3, 2]   # Top nodes
-])
-elements = np.array([
-    [0, 1, 4, 5], [1, 2, 5, 6], [2, 3, 6, 7],  # Bottom elements
-    [4, 5, 8, 9], [5, 6, 9, 10], [6, 7, 10, 11]  # Top elements
-])
-n_nodes = len(nodes)
-n_elements = len(elements)
-
-# Define boundary conditions
-fixed_nodes = [0, 3, 8, 11]  # Fixed nodes at the corners
-force_nodes = [1, 2, 5, 6, 9, 10]  # Nodes with applied forces
-force_values = [1e5, 1e5, 1e5, 1e5, 1e5, 1e5]  # 100 kN forces
-
-# You can use these synthetic data values to test the provided code
-```
-
-## install code in cloud9 
-
-```bash
-pip install  ace_tools contourpy cycler fonttools joblib kiwisolver matplotlib numpy packaging pandas pillow pyparsing python-dateutil pytz scikit-learn scipy six threadpoolctl tzdata
-```
-
-## Results 
-
-![Screenshot for bedrock.](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/operations/result1.png)
 
 
 
