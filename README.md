@@ -17,4 +17,7 @@ This workshop is designed to be run as part of an AWS event, there are no costs 
 ### Note
 Provisioning this workshop environment in your AWS account will create resources and there will be cost associated with them. The cleanup section provides a guide to remove them, preventing further charges.
 
-![Start Workshop](https://github.com/kaveerh/bedrock-mining-demo/blob/main/content/1Introduction.md "Start Workshop")
+
+![Setup Workshop](https://github.com/kaveerh/bedrock-mining-demo/blob/main/Setup.md "Setup Workshop")
+
+

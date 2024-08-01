@@ -207,4 +207,4 @@ pip install  ace_tools contourpy cycler fonttools joblib kiwisolver matplotlib n
 ![Screenshot for bedrock.](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/operations/result1.png)
 
 
-:image[synthetic image generation]{src="/static/operations/result1.png" }
+
