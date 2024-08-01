@@ -28,19 +28,24 @@ Select the Manage model
 ![Select Model Subnet](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/setup/model-access-view-subset.png)
 
 ![Select Model Subnet](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/setup/model-access-select.png)
-Select the checkboxes listed below to activate the models. If running from your own account, there is no cost to activate the models - you only pay for what you use during the labs. Review the applicable EULAs as needed.
-Amazon (select Amazon to automatically select all Amazon Titan models)
-Anthropic > Claude 3 Sonnet, Claude 
-Meta > Llama 3.1 8B , 70B Instruct
 
-Mistral AI > 
+
+Select the checkboxes listed below to activate the models. If running from your own account, there is no cost to activate the models - you only pay for what you use during the labs. Review the applicable EULAs as needed.
+
+
+### Amazon (select Amazon to automatically select all Amazon Titan models)
+### Anthropic > Claude 3 Sonnet, Claude 
+### Meta > Llama 3.1 8B , 70B Instruct
+### Mistral AI > 
 
 Click "Next" to activate the models in your account.
 
+
+
+Review and submit your models
 Select the Manage model
 ![Select Model Submit](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/setup/model-submit.png)
 
-Review and submit your models
 Select the Manage model
 
 Monitor the model access status. It may take a few minutes for the models to move from In Progress to Access granted status. You can use the Refresh button to periodically check for updates.

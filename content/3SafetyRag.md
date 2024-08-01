@@ -14,25 +14,62 @@ Retrieval-Augmented Generation (RAG) is the process of optimizing the output of 
 # How can AWS support your Retrieval-Augmented Generation requirements?
 Amazon Bedrock is a fully-managed service that offers a choice of high-performing foundation models—along with a broad set of capabilities—to build generative AI applications while simplifying development and maintaining privacy and security. With knowledge bases for Amazon Bedrock, you can connect FMs to your data sources for RAG in just a few clicks. Vector conversions, retrievals, and improved output generation are all handled automatically.
 
-## 
-1.Configure the data sources to add to your knowledge base.
-2.Upload your data to an Amazon S3 bucket.
-3.Ingest your data by generating embeddings with a foundation model and storing them in a supported vector store.
-4.Set up your application or agent to query the knowledge base and return augmented responses.
+
+Select Knowledge base from the left navigation pane under Orchestration.
+
+![Select KB](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/select-kb.png )
+
+
+## Step 1
+
+Select Chat with your document
+
+![Chat with your document](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/Bedrock-kbselect.png )
+
+## Step 2
+Select the Model 
+
+![Select a Model ](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/kb-modelpick.png)
+
+## Step 3
+Download the following file to you PC
+![Sample Mine SafetyDocument](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/MineHealthandSafetyAct29-small.pdf "Sample Mine SafetyDocument")
+
+Choose a Document 
+![Choose a Document](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/Kb-fileselect.png )
+
+
+## Step 4
+
+Copy the Prompt and paste it in the windows.
+
+```bash
+Who should pay for the cost of Annual medical reports
+```
+
+![Chat with your document](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/kb-prompt.png )
+
+## Sample Result 1 
+
+![Sample result1](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/result1.png )
+
+
+## Step 5
+
+
+
+```bash
+What can we do to Enhancing effectiveness of investigation
+```
+## Sample Result 2
+
+![Sample result 2](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/result2.png )
 
 
 
 
-List for file to use in the RAG model.
-
-[MineHealthandSafetyAct29](https://ws-assets-prod-iad-r-pdx-f3b3f9f1a7d6a3d0/761eaa28-7624-432c-9c2e-0b1b6c4bd953/MineHealthandSafetyAct29.pdf "MineHealthandSafetyAct29")
 
 
-[MinerialsCouncil-safety-2](https://ws-assets-prod-iad-r-pdx-f3b3f9f1a7d6a3d0.s3.us-west-2.amazonaws.com/761eaa28-7624-432c-9c2e-0b1b6c4bd953/MinerialsCouncil-safety-2.pdf "MinerialsCouncil-safety-2")
 
 
-[Minesafety3](https://ws-assets-prod-iad-r-pdx-f3b3f9f1a7d6a3d0.s3.us-west-2.amazonaws.com/761eaa28-7624-432c-9c2e-0b1b6c4bd953/Minesafety3.pdf "Minesafety3")
-
-
-[minerals-council-fact-sheet-safety-in-mining-082023-v2](https://ws-assets-prod-iad-r-pdx-f3b3f9f1a7d6a3d0.s3.us-west-2.amazonaws.com/761eaa28-7624-432c-9c2e-0b1b6c4bd953/minerals-council-fact-sheet-safety-in-mining-082023-v2.pdf "minerals-council-fact-sheet")
 
