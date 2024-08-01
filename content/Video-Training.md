@@ -1,6 +1,6 @@
 ---
-title : "Using Machine Learning model for Video Tracking of People"
-weight : 26
+#Using Machine Learning model for Video Tracking of People
+
 ---
 
 
@@ -8,6 +8,7 @@ Segment Anything Model 2 (SAM 2) is a foundation model towards solving promptabl
 
 :image[synthetic image generation]{src="/static/safety/model_diagram.png" }
 
+![Open side bar](https://github.com/kaveerh/bedrock-mining-demo/blob/main//static/safety/model_diagram.png)
 
 
 [Sample Safety video](https://ws-assets-prod-iad-r-pdx-f3b3f9f1a7d6a3d0.s3.us-west-2.amazonaws.com/761eaa28-7624-432c-9c2e-0b1b6c4bd953/workerzonedetection.mp4  "Sample Safety video")

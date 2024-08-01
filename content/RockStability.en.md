@@ -1,34 +1,30 @@
 ---
-title : "Rock stability analysis using GenAI"
-weight : 23
+#Rock stability analysis using GenAI
 ---
 
-
-
-#Heading
 
 Python code for predicting Rock Stability locations using machine learning techniques.
 
 1. Select Amazon bedrock
+![Screenshot for bedrock.](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/IndustryPrompts/Selectbedrock.png)
 
-
-:image[synthetic image generation]{src="/static/IndustryPrompts/Selectbedrock.png" }
 
 2. Open side bar
 
-:image[synthetic image generation]{src="/static/IndustryPrompts/selectsidepanel.png" }
+![Open side bar](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/IndustryPrompts/selectsidepanel.png)
 
 3. Select text
 
-:image[synthetic image generation]{src="/static/IndustryPrompts/selecttext.png"}
+![Select chat](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/IndustryPrompts/selecttext.png)
+
 
 4. Select the model Meta Llama 3.1 70B model
 
-:image[synthetic image generation]{src="/static/IndustryPrompts/selectllama80b.png" width=800}
+![Select model Llama3.1 70B](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/IndustryPrompts/selectllama80b.png)
 
 
 # Explain Use Case
-Rock stability analysis is a complex task that involves various methods and techniques. Here, I'll provide you with a basic code for a simple rock stability analysis using the Rocscience software's RS2 program, which is a widely used tool for rock mechanics and geotechnical engineering. Please note that this is a simplified example and actual rock stability analysis requires more detailed input data and consideration of various factors.
+Rock stability analysis is a complex task that involves various methods and techniques. Here, I'll provide you with a basic code for a simple rock stability analysis using the python program, which is a  tool for rock mechanics and geotechnical engineering. Please note that this is a simplified example and actual rock stability analysis requires more detailed input data and consideration of various factors.
 
 
 **Please note that this is a highly simplified example and actual rock stability analysis in mining requires more detailed input data and consideration of various factors, such as joint sets, faults, and other geological features.**
@@ -37,7 +33,7 @@ Rock stability analysis is a complex task that involves various methods and tech
 
 
 
-:::code{showCopyAction=true showLineNumbers=false language=python}
+```python
 import numpy as np
 from scipy.sparse import csr_matrix
 from scipy.sparse.linalg import spsolve
@@ -147,7 +143,7 @@ for element in elements:
 for i, stress in enumerate(stresses):
     print(f"Element {i}: Stress = {stress}")
 
-:::
+```
 
 
 
@@ -165,14 +161,14 @@ You can directly substitute these values into the provided Python code to test i
 
 Note that this synthetic data is a simplified example, and in real-world applications, you would typically obtain the input data from field measurements, geological surveys, or other sources specific to the mining site under investigation.
 
-:::code{showCopyAction=true showLineNumbers=false language=bash}
+```bash
 Given me code to generate synthetic data that will be needed for that csv file 
-:::
+```
 
 
 
 
-:::code{showCopyAction=true showLineNumbers=false language=python}
+```python
 import numpy as np
 
 # Define material properties
@@ -198,15 +194,17 @@ force_nodes = [1, 2, 5, 6, 9, 10]  # Nodes with applied forces
 force_values = [1e5, 1e5, 1e5, 1e5, 1e5, 1e5]  # 100 kN forces
 
 # You can use these synthetic data values to test the provided code
-:::
+```
 
-##install code in cloud9 
+## install code in cloud9 
 
-:::code{showCopyAction=true showLineNumbers=false language=bash}
+```bash
 pip install  ace_tools contourpy cycler fonttools joblib kiwisolver matplotlib numpy packaging pandas pillow pyparsing python-dateutil pytz scikit-learn scipy six threadpoolctl tzdata
-:::
+```
 
 ## Results 
+
+![Screenshot for bedrock.](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/operations/result1.png)
 
 
 :image[synthetic image generation]{src="/static/operations/result1.png" }

@@ -1,5 +1,5 @@
 ---
-# title: "Mining prompt Engineering"
+#  Mining prompt Engineering
 ---
 1. Select Amazon bedrock
 

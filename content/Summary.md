@@ -1,6 +1,5 @@
 ---
-title : "Summary"
-weight : 29
+# Summary
 ---
 
 Congratulations on completing the workshop!
@@ -26,7 +25,7 @@ Model provider-specific documentation:
 ## Credits
 
 - Lead author: Kaveer Harie
-- Content and app code contribution by:  Kaveer Harie and  Youhana Hana
+- Content and app code contribution by:  Kaveer Harie 
 - Content champion: Kaveer Harie
 
 Setup pages based on content from the Amazon Building with [Amazon Bedrock and LangChain Workshop](https://catalog.workshops.aws/building-with-amazon-bedrock/en-US)

@@ -1,27 +1,27 @@
 ---
-title : "Predicting Mineral Deposit Locations
-"
-weight : 22
+#Predicting Mineral Deposit Locations
 ---
 
-#Heading
+
 
 Python code for predicting mineral deposit locations using machine learning techniques.
 
 1. Select Amazon bedrock
+![Screenshot for bedrock.](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/IndustryPrompts/Selectbedrock.png)
 
 
 2. Open side bar
 
-:image[synthetic image generation]{src="/static/IndustryPrompts/selectsidepanel.png" }
+![Open side bar](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/IndustryPrompts/selectsidepanel.png)
 
 3. Select text
 
-:image[synthetic image generation]{src="/static/IndustryPrompts/selecttext.png"}
+![Select chat](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/IndustryPrompts/selecttext.png)
+
 
 4. Select the model Meta Llama 3.1 70B model
 
-:image[synthetic image generation]{src="/static/IndustryPrompts/selectllama80b.png" width=800}
+![Select model claude Sonnet Output](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/IndustryPrompts/selectllama80b.png)
 
 
 # Explain Use Case
@@ -46,9 +46,11 @@ rock_type: Type of rock ( categorical: 0 = sedimentary, 1 = igneous, 2 = metamor
 y: A 1D array of shape (n_samples,) containing the target variable:
 
 deposit: Presence of a mineral deposit (binary: 0 = no, 1 = yes)
-:::code{showCopyAction=true showLineNumbers=false language=bash}
+```bash 
 can you provide me sample code for Predicting Mineral Deposit Location
-:::
+```
+
+
 
 1. The dataset is loaded from a CSV file using `pandas`.
 2. The features (`X`) and target variable (`y`, representing the presence or absence of a mineral deposit) are separated.
@@ -60,7 +62,7 @@ can you provide me sample code for Predicting Mineral Deposit Location
 8. To predict mineral deposit locations for new data, create a `pandas` DataFrame with the feature values, and use the trained model's `predict` method to make predictions.
 
 
-:::code{showCopyAction=true showLineNumbers=false language=python}
+```python
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
@@ -92,7 +94,7 @@ print("Classification Report:")
 print(classification_report(y_test, y_pred))
 print("Confusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
-:::
+```
 
 
 
@@ -105,9 +107,9 @@ This code generates synthetic data for the mineral deposit dataset with the foll
 * Rock type: categorical with three
 
 
-:::code{showCopyAction=true showLineNumbers=false language=bash}
+```bash 
 Given me code to generate synthetic data that will be needed for that csv file 
-:::
+```
 
 
 
@@ -119,7 +121,7 @@ Given me code to generate synthetic data that will be needed for that csv file
 6. Feature names are added to the DataFrame columns.
 7. The DataFrame is saved as a CSV file named `mineral_deposit_data.csv` using the `to_csv` method.
 
-:::code{showCopyAction=true showLineNumbers=false language=python}
+```python
 import pandas as pd
 import numpy as np
 
@@ -160,17 +162,17 @@ df = pd.DataFrame(data)
 
 # Save the data to a CSV file
 df.to_csv('mineral_deposit_data.csv', index=False)
-:::
+```
 
 ##install code in cloud9 
 
-:::code{showCopyAction=true showLineNumbers=false language=bash}
+```bash
 pip install  ace_tools contourpy cycler fonttools joblib kiwisolver matplotlib numpy packaging pandas pillow pyparsing python-dateutil pytz scikit-learn scipy six threadpoolctl tzdata
-:::
+```
 
 ## Results 
 
+![result1](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/operations/drillholelit.png)
 
-:image[synthetic image generation]{src="/static/operations/drillholelit.png" }
 
 
