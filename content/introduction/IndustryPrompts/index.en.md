@@ -4,6 +4,7 @@ weight: 21
 ---
 1. Select Amazon bedrock
 
+![enter image description here](https://github.com/kaveerh/bedrock-mining-demo/blob/main//static/IndustryPrompts/Selectbedrock.png)
 
 :image[synthetic image generation]{src="/static/IndustryPrompts/Selectbedrock.png" }
 
