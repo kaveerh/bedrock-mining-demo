@@ -14,24 +14,28 @@ Retrieval-Augmented Generation (RAG) is the process of optimizing the output of 
 # How can AWS support your Retrieval-Augmented Generation requirements?
 Amazon Bedrock is a fully-managed service that offers a choice of high-performing foundation models—along with a broad set of capabilities—to build generative AI applications while simplifying development and maintaining privacy and security. With knowledge bases for Amazon Bedrock, you can connect FMs to your data sources for RAG in just a few clicks. Vector conversions, retrievals, and improved output generation are all handled automatically.
 
+# What task are we performing in the lab
+In this lab example we will use the Large Language model to query a Mine Safety document and find the relavent information base on our prompt
+
+##  Step 1
 
 Select Knowledge base from the left navigation pane under Orchestration.
 
 ![Select KB](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/select-kb.png )
 
 
-## Step 1
+## Step 2
 
 Select Chat with your document
 
 ![Chat with your document](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/Bedrock-kbselect.png )
 
-## Step 2
-Select the Model 
-
-![Select a Model ](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/kb-modelpick.png)
-
 ## Step 3
+Select the Model 
+![Select a Model ](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/kb-modelselect)
+![Select a Model picks ](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/kb-modelpick.png)
+
+## Step  4 
 Download the following file to you PC
 ![Sample Mine SafetyDocument](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/MineHealthandSafetyAct29-small.pdf "Sample Mine SafetyDocument")
 
@@ -39,7 +43,7 @@ Choose a Document
 ![Choose a Document](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/Kb-fileselect.png )
 
 
-## Step 4
+## Step 5
 
 Copy the Prompt and paste it in the windows.
 
@@ -54,7 +58,7 @@ Who should pay for the cost of Annual medical reports
 ![Sample result1](https://github.com/kaveerh/bedrock-mining-demo/blob/main/static/safety/result1.png )
 
 
-## Step 5
+## Step 6
 
 
 
